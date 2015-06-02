@@ -1,24 +1,18 @@
 package de.jonashackt.springeasyrules;
 
 import static org.easyrules.core.JmxRulesEngineBuilder.aNewJmxRulesEngine;
-import static org.easyrules.core.RulesEngineBuilder.aNewRulesEngine;
 
 import org.easyrules.api.JmxRulesEngine;
-import org.easyrules.api.RulesEngine;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;
 import de.jonashackt.springeasyrules.rules.AddressRule;
 import de.jonashackt.springeasyrules.rules.OrderRule;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringEasyRulesApplication.class)
+
 public class SpringEasyRulesApplicationTests {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SpringEasyRulesApplicationTests.class);
@@ -57,8 +51,8 @@ public class SpringEasyRulesApplicationTests {
 		orderRule.setOrder(order);
 		
 		// When
-		RulesEngine rulesEngine = aNewRulesEngine().build();
-		rulesEngine.registerRule(orderRule);
+		JmxRulesEngine rulesEngine = aNewJmxRulesEngine().build();
+		rulesEngine.registerJmxRule(orderRule);
 		rulesEngine.fireRules();
 		
 		// Then

@@ -1,0 +1,4 @@
+rules:
+  minimumamount: 150
+  test: "foobar"
+  
