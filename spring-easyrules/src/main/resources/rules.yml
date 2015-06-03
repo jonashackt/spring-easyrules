@@ -1,0 +1,6 @@
+foorule:
+  bar: "BlaTestBla"
+  
+myrule:
+  minimumamount: 150
+  test: "foobar"
