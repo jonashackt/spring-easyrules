@@ -23,34 +23,38 @@ public class SpringEasyRulesProcessor {
 	
 	public void processRules() {
 		 // Given
-	    Address address = new Address();
-	    address.setPostcode("99425");
-	    address.setStreet("Haalstreet");
-	    address.setState("GERMANY");
-        
-        AddressRule addressRule = new AddressRule("Address rule", "Verifying the ingredients of an address");
-        addressRule.setAddress(address);
-        
-        // When
-        JmxRulesEngine rulesEngine = aNewJmxRulesEngine().build();
-        rulesEngine.registerJmxRule(addressRule);
-
-        
-        // Given
-        Order order = new Order();
-		order.setState2ship2("GERMANY");
-		order.setAmount(160);
- 		
- 		orderRule.setAddress(address);
- 		orderRule.setOrder(order);
- 		
- 		// When
- 		rulesEngine.registerJmxRule(orderRule);
- 		
- 		
- 		// Given
- 		rulesEngine.registerRule(fooRule);		
- 		
- 		rulesEngine.fireRules();
+		
+		// For JMX we need that stuff running longer than just a unit-tests time 
+		
+		
+//	    Address address = new Address();
+//	    address.setPostcode("99425");
+//	    address.setStreet("Haalstreet");
+//	    address.setState("GERMANY");
+//        
+//        AddressRule addressRule = new AddressRule("Address rule", "Verifying the ingredients of an address");
+//        addressRule.setAddress(address);
+//        
+//        // When
+//        JmxRulesEngine rulesEngine = aNewJmxRulesEngine().build();
+//        rulesEngine.registerJmxRule(addressRule);
+//
+//        
+//        // Given
+//        Order order = new Order();
+//		order.setState2ship2("GERMANY");
+//		order.setAmount(160);
+// 		
+// 		orderRule.setAddress(address);
+// 		orderRule.setOrder(order);
+// 		
+// 		// When
+// 		rulesEngine.registerRule(orderRule);
+// 		
+// 		
+// 		// Given
+// 		rulesEngine.registerRule(fooRule);		
+// 		
+// 		rulesEngine.fireRules();
 	}
 }

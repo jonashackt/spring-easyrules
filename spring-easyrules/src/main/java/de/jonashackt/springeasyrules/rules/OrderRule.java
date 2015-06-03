@@ -6,14 +6,21 @@ import org.easyrules.annotation.Rule;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import de.jonashackt.springeasyrules.errorhandling.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;
 
+/**
+ * When Address` state is not equal the Orders` state2ship or the Orders´ amount is smaller than the minimum amount,
+ * then {@value #ERRORTEXT}
+ */
 @Component
-@ConfigurationProperties(prefix="myrule", ignoreUnknownFields=false, locations="rules.yml") // this should load configuration via spring autoconfiguration to the rules fields
+@ConfigurationProperties(locations="rules.yml", prefix="order.myfirstcategory", ignoreUnknownFields=false) // this should load configuration via spring autoconfiguration to the rules fields
 @Rule(name = "Order rule", description = " Is the state in Address the same as it is in the Order?")
-public class OrderRule implements OrderRuleJmx {
+public class OrderRule extends AbstractRule {
 
+	public static final String ERRORTEXT = "The States aren´t equal or the amount is smaller then the minimum, so we couldn´t ship the product!";
+		
 	private Address address;
 	private Order order;
 	
@@ -35,7 +42,9 @@ public class OrderRule implements OrderRuleJmx {
 	
 	@Action
 	public void then() {
-		System.out.println("The States are equal & amount is bigger than the minimum, so let's ship the product!");
+		System.out.println(ERRORTEXT);
+		getResult().setStatus(PlausibilityStatus.ERROR);
+		getResult().addMessage(ERRORTEXT);
 	}
 	
 	public void setAddress(Address address) {
@@ -48,30 +57,5 @@ public class OrderRule implements OrderRuleJmx {
 	
 	public void setMinimumamount(int minimumamount) {
 		this.minimumamount = minimumamount;
-	}
-
-	@Override
-	public String getAddressState() {
-		return address.getState();
-	}
-
-	@Override
-	public void setAddressState(String state) {
-		address.setState(state);
-	}
-
-	@Override
-	public String getOrderState2Ship2() {
-		return order.getState2ship2();
-	}
-
-	@Override
-	public void setOrderState2Ship2(String state) {
-		order.setState2ship2(state);
-	}
-
-	@Override
-	public int getMinimumamount() {
-		return minimumamount;
 	}
 }

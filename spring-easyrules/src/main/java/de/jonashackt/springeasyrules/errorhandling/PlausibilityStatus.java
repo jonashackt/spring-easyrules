@@ -1,5 +1,5 @@
 package de.jonashackt.springeasyrules.errorhandling;
 
-public class RuleError {
-
+public enum PlausibilityStatus {
+	SUCCESS, ERROR;
 }

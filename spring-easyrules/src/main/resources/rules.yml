@@ -1,6 +1,11 @@
+address:
+  postcodeReqex: "([0-9]{5})"
+  addressPostCodeNotNull: true
+
+order:
+  myfirstcategory:
+    minimumamount: 150
+    test: "foobar"
+    
 foorule:
   bar: "BlaTestBla"
-  
-myrule:
-  minimumamount: 150
-  test: "foobar"
