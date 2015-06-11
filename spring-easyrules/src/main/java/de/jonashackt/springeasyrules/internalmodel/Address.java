@@ -3,9 +3,7 @@ package de.jonashackt.springeasyrules.internalmodel;
 public class Address {
 
 	private String postcode;
-	
 	private String street;
-	
 	private String state;
 
 	public String getPostcode() {

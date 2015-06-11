@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import de.jonashackt.springeasyrules.errorhandling.PlausibilityResult;
 import de.jonashackt.springeasyrules.errorhandling.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;
@@ -24,9 +25,6 @@ public class SpringEasyRulesApplicationTests {
 	private RulesEngine rulesEngine = aNewRulesEngine().build();  
 	
 	@Autowired
-	private SpringEasyRulesProcessor springEasyRulesProcessor;
-	
-	@Autowired
 	private OrderRule orderRule;
 	
 	@Autowired
@@ -39,31 +37,53 @@ public class SpringEasyRulesApplicationTests {
 	public void address() {
 		// Given
 	    Address address = new Address();
-	    address.setPostcode("99425");
+	    address.setPostcode("994259");
 	    address.setStreet("Haalstreet");
 	    address.setState("GERMANY");
-        
         addressRule.setAddress(address);
-        rulesEngine.registerRule(addressRule);
         
         // When
+        rulesEngine.registerRule(addressRule);
         rulesEngine.fireRules();
         
         // Then
-        Assert.assertEquals(AddressRule.ERRORTEXT, addressRule.getResult().getMessages().get(0));
+        PlausibilityResult result = addressRule.getResult();
+        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessages().get(0));
         Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
 	}
+	
+	@Test 
+	public void addressPostCodeMandatoryButIsNull() {
+		// Given
+	    Address address = new Address(); // -> postcode == null
+        addressRule.setAddress(address);
         
+        // When
+        rulesEngine.registerRule(addressRule);
+        rulesEngine.fireRules();
+        
+        // Then
+        PlausibilityResult result = addressRule.getResult();
+        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessages().get(0));
+        Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
+	}
+    
+	@Test
     public void order() {    
         // Given
-    	Order order = new Order();
+		Address address = new Address();
+	    address.setPostcode("99425");
+	    address.setStreet("Haalstreet");
+	    address.setState("GERMANY");
+		orderRule.setAddress(address);
+	    
+		Order order = new Order();
 		order.setState2ship2("GERMANY");
-		order.setAmount(160);
- 		
+		order.setAmount(140);
  		orderRule.setOrder(order);
- 		rulesEngine.registerRule(orderRule);
-
+ 		
  		// When
+ 		rulesEngine.registerRule(orderRule);
  		rulesEngine.fireRules();
 		
 		// Then

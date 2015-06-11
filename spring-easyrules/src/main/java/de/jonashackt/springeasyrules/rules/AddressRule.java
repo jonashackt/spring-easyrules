@@ -10,23 +10,32 @@ import de.jonashackt.springeasyrules.errorhandling.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 
 /**
- * When Address` postcode should be checked for NotNull {@value #addressPostCodeNotNull} or it doesn´t match {@value #postcodeReqex},
+ * When Address` postcode mandatory {@value #postcodeMandatory} but is Null or it doesn´t match {@value #postcodeReqex},
  * then {@value #ERRORTEXT}
  */
 @Component
 @ConfigurationProperties(locations="rules.yml", prefix="address", ignoreUnknownFields=false) // this should load configuration via spring autoconfiguration to the rules fields
-@Rule(name = "Address rule", description = "Verifying the ingredients of an address")
+@Rule
 public class AddressRule extends AbstractRule {
 
-	// TODO: Change duplicate description!
 	public static final String ERRORTEXT = "The Address´ postcode isn´t valid!";
 	private Address address;
 	private String postcodeReqex = "([0-9]{5})";
-	private boolean addressPostCodeNotNull;
+	private boolean postcodeMandatory;
 	
+	public boolean isPostcodeMandatory() {
+		return postcodeMandatory;
+	}
+
+	public void setPostcodeMandatory(boolean postcodeMandatory) {
+		this.postcodeMandatory = postcodeMandatory;
+	}
+
 	@Condition
     public boolean when() {
-		return addressPostCodeNotNull && address.getPostcode() == null && !address.getPostcode().matches(postcodeReqex);
+		if(postcodeMandatory && address.getPostcode() == null)
+			return true; // -> postcode is null
+		return !address.getPostcode().matches(postcodeReqex);
     }
 
 	@Action
@@ -47,13 +56,5 @@ public class AddressRule extends AbstractRule {
 
 	public void setPostcodeReqex(String postcodeReqex) {
 		this.postcodeReqex = postcodeReqex;
-	}
-	
-	public boolean isAddressPostCodeNull() {
-		return addressPostCodeNotNull;
-	}
-
-	public void setAddressPostCodeNull(boolean addressPostCodeNull) {
-		this.addressPostCodeNotNull = addressPostCodeNull;
 	}
 }

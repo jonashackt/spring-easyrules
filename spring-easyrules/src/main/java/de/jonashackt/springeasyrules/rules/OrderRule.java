@@ -16,7 +16,7 @@ import de.jonashackt.springeasyrules.internalmodel.Order;
  */
 @Component
 @ConfigurationProperties(locations="rules.yml", prefix="order.myfirstcategory", ignoreUnknownFields=false) // this should load configuration via spring autoconfiguration to the rules fields
-@Rule(name = "Order rule", description = " Is the state in Address the same as it is in the Order?")
+@Rule
 public class OrderRule extends AbstractRule {
 
 	public static final String ERRORTEXT = "The States aren´t equal or the amount is smaller then the minimum, so we couldn´t ship the product!";
@@ -26,7 +26,7 @@ public class OrderRule extends AbstractRule {
 	
 	private int minimumamount;
 	private String test;
-	
+
 	public String getTest() {
 		return test;
 	}
@@ -37,7 +37,7 @@ public class OrderRule extends AbstractRule {
 
 	@Condition
 	public boolean when() {
-		return address.getState().equals(order.getState2ship2()) && order.getAmount() > minimumamount && minimumamount == 150;
+		return !address.getState().equals(order.getState2ship2()) || order.getAmount() < minimumamount;
 	}
 	
 	@Action

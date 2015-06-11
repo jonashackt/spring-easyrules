@@ -1,6 +1,6 @@
 address:
   postcodeReqex: "([0-9]{5})"
-  addressPostCodeNotNull: true
+  postcodeMandatory: true
 
 order:
   myfirstcategory:

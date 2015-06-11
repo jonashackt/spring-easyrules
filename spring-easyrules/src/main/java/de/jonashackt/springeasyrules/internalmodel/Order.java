@@ -3,7 +3,6 @@ package de.jonashackt.springeasyrules.internalmodel;
 public class Order {
 
     private int amount;
-    
     private String state2ship2;
 
     public int getAmount() {
