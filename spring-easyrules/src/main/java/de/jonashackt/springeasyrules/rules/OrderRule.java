@@ -25,15 +25,6 @@ public class OrderRule extends AbstractRule {
 	private Order order;
 	
 	private int minimumamount;
-	private String test;
-
-	public String getTest() {
-		return test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
-	}
 
 	@Condition
 	public boolean when() {

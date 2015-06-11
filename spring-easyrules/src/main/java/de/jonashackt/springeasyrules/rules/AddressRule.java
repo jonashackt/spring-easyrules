@@ -41,17 +41,9 @@ public class AddressRule extends AbstractRule {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	public String getPostcodeReqex() {
-		return postcodeReqex;
-	}
 
 	public void setPostcodeReqex(String postcodeReqex) {
 		this.postcodeReqex = postcodeReqex;
-	}
-	
-	public boolean isPostcodeMandatory() {
-		return postcodeMandatory;
 	}
 
 	public void setPostcodeMandatory(boolean postcodeMandatory) {

@@ -5,7 +5,6 @@ address:
 order:
   myfirstcategory:
     minimumamount: 150
-    test: "foobar"
     
 foorule:
   bar: "BlaTestBla"
