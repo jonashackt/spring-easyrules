@@ -1,4 +1,4 @@
-package de.jonashackt.springeasyrules.errorhandling;
+package de.jonashackt.springeasyrules;
 
 public enum PlausibilityStatus {
 	SUCCESS, ERROR;

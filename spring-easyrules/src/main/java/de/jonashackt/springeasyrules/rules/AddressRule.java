@@ -6,7 +6,7 @@ import org.easyrules.annotation.Rule;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import de.jonashackt.springeasyrules.errorhandling.PlausibilityStatus;
+import de.jonashackt.springeasyrules.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 
 /**
@@ -34,7 +34,7 @@ public class AddressRule extends AbstractRule {
     public void then() {
     	System.out.println(ERRORTEXT);
     	getResult().setStatus(PlausibilityStatus.ERROR);
-    	getResult().addMessage(ERRORTEXT);
+    	getResult().setMessage(ERRORTEXT);
     }
 	
     

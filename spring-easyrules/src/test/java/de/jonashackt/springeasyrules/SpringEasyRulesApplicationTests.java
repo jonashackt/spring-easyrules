@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import de.jonashackt.springeasyrules.errorhandling.PlausibilityResult;
-import de.jonashackt.springeasyrules.errorhandling.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;
 import de.jonashackt.springeasyrules.rules.AddressRule;
@@ -43,12 +41,10 @@ public class SpringEasyRulesApplicationTests {
         addressRule.setAddress(address);
         
         // When
-        rulesEngine.registerRule(addressRule);
-        rulesEngine.fireRules();
+        PlausibilityResult result = PlausibilityChecker.checkRule(addressRule);
         
         // Then
-        PlausibilityResult result = addressRule.getResult();
-        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessages().get(0));
+        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessage());
         Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
 	}
 	
@@ -59,12 +55,10 @@ public class SpringEasyRulesApplicationTests {
         addressRule.setAddress(address);
         
         // When
-        rulesEngine.registerRule(addressRule);
-        rulesEngine.fireRules();
+        PlausibilityResult result = PlausibilityChecker.checkRule(addressRule);
         
         // Then
-        PlausibilityResult result = addressRule.getResult();
-        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessages().get(0));
+        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessage());
         Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
 	}
     
@@ -83,12 +77,11 @@ public class SpringEasyRulesApplicationTests {
  		orderRule.setOrder(order);
  		
  		// When
- 		rulesEngine.registerRule(orderRule);
- 		rulesEngine.fireRules();
+ 		PlausibilityResult result = PlausibilityChecker.checkRule(orderRule);
 		
 		// Then
-		Assert.assertEquals(OrderRule.ERRORTEXT, orderRule.getResult().getMessages().get(0));
-		Assert.assertEquals(PlausibilityStatus.ERROR, orderRule.getResult().getStatus());
+		Assert.assertEquals(OrderRule.ERRORTEXT, result.getMessage());
+		Assert.assertEquals(PlausibilityStatus.ERROR, result.getStatus());
 	}
     
     @Test

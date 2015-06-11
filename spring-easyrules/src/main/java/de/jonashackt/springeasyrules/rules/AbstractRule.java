@@ -1,6 +1,6 @@
 package de.jonashackt.springeasyrules.rules;
 
-import de.jonashackt.springeasyrules.errorhandling.PlausibilityResult;
+import de.jonashackt.springeasyrules.PlausibilityResult;
 
 public class AbstractRule {
 
