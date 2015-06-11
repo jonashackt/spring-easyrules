@@ -39,19 +39,6 @@
 			<version>${easyrules.version}</version>
 		</dependency>
 		
-		<dependency>
-            <groupId>org.easyrules</groupId>
-            <artifactId>easyrules-jmx</artifactId>
-            <version>${easyrules.version}</version>
-        </dependency>
-
-		<!-- Spring Boot Admin Client -->
-		<dependency>
-		    <groupId>de.codecentric</groupId>
-		    <artifactId>spring-boot-admin-starter-client</artifactId>
-		    <version>1.2.1</version>
-		</dependency>
-		
 		<!-- Tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

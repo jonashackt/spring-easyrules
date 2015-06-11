@@ -21,15 +21,7 @@ public class AddressRule extends AbstractRule {
 	public static final String ERRORTEXT = "The Address´ postcode isn´t valid!";
 	private Address address;
 	private String postcodeReqex = "([0-9]{5})";
-	private boolean postcodeMandatory;
-	
-	public boolean isPostcodeMandatory() {
-		return postcodeMandatory;
-	}
-
-	public void setPostcodeMandatory(boolean postcodeMandatory) {
-		this.postcodeMandatory = postcodeMandatory;
-	}
+	private boolean postcodeMandatory;	
 
 	@Condition
     public boolean when() {
@@ -56,5 +48,13 @@ public class AddressRule extends AbstractRule {
 
 	public void setPostcodeReqex(String postcodeReqex) {
 		this.postcodeReqex = postcodeReqex;
+	}
+	
+	public boolean isPostcodeMandatory() {
+		return postcodeMandatory;
+	}
+
+	public void setPostcodeMandatory(boolean postcodeMandatory) {
+		this.postcodeMandatory = postcodeMandatory;
 	}
 }
