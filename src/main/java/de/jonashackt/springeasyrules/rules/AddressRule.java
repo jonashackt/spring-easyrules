@@ -15,7 +15,7 @@ import de.jonashackt.springeasyrules.internalmodel.Address;
  */
 @Component
 @ConfigurationProperties(locations="rules.yml", prefix="address", ignoreUnknownFields=false) // this should load configuration via spring autoconfiguration to the rules fields
-@Rule
+@Rule(name="AddressRule")
 public class AddressRule extends AbstractRule {
 
 	public static final String ERRORTEXT = "The Address´ postcode isn´t valid!";

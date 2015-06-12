@@ -16,7 +16,7 @@ import de.jonashackt.springeasyrules.internalmodel.Order;
  */
 @Component
 @ConfigurationProperties(locations="rules.yml", prefix="order.myfirstcategory", ignoreUnknownFields=false) // this should load configuration via spring autoconfiguration to the rules fields
-@Rule
+@Rule(name="OrderRule")
 public class OrderRule extends AbstractRule {
 
 	public static final String ERRORTEXT = "The States aren´t equal or the amount is smaller then the minimum, so we couldn´t ship the product!";

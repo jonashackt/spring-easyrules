@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix="foorule", ignoreUnknownFields=false, locations="rules.yml")
-@Rule
+@Rule(name="FooRule")
 public class FooRule {
 
 	private String bar;

@@ -1,9 +1,12 @@
 package de.jonashackt.springeasyrules;
 
 
+/**
+ * Default-Status is SUCCESSful
+ */
 public class PlausibilityResult {
 
-	private PlausibilityStatus status;
+	private PlausibilityStatus status = PlausibilityStatus.SUCCESS;
 	private String message;
 	
 	public PlausibilityStatus getStatus() {
