@@ -93,7 +93,7 @@ public class SpringEasyRulesApplicationTests {
     	rulesEngine.fireRules();
     	
     	// Then
-    	//...
+    	System.out.println("foo bar");
     }
 	
 	@Test

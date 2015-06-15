@@ -12,14 +12,7 @@ import org.springframework.stereotype.Component;
 public class FooRule {
 
 	private String bar;
-
-	public String getBar() {
-		return bar;
-	}
-
-	public void setBar(String bar) {
-		this.bar = bar;
-	}
+	private String fooBarFieldValue;
 	
 	@Condition
 	public boolean when() {
@@ -30,5 +23,23 @@ public class FooRule {
 	@Action
 	public void then() {
 		System.out.println("Rule Fired");
+	}
+	
+	
+	public void setFooBarFieldValue(String fooBarFieldValue) {
+		this.fooBarFieldValue = fooBarFieldValue;
+	}
+	
+
+	public String getFooBarFieldValue() {
+		return fooBarFieldValue;
+	}
+
+	public String getBar() {
+		return bar;
+	}
+
+	public void setBar(String bar) {
+		this.bar = bar;
 	}
 }

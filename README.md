@@ -10,6 +10,8 @@ Having the @EnableConfigurationProperties Annotation at your SpringBootApplicati
 
 Just watch out - if you use cool YAML-Files for that - only use Camel-Case with one Letter big, not more (like myPropertything is ok, myPropertyThing is not!). Otherwise you get Errors you simply could´nt understand. At least i could´nt :) Also, in the Spring Boot Docs there is a reference to the yourhost:yourport/configprops - URL. There you could see your properties, if set up correctly. But this does not allways show the right contents, even if they are correctly loaded! So watch out a bit - and you´ll get fun with that stuff :D
 
+Maybe, it´s better to use dashed notation, like seen in the [foorule] with the "foo-bar-field-value" that is used as a "fooBarFieldValue" in the RulePojo. This notation is also described in the docs.
+
 For Eclipse development of YAML-Ruleproperty-Files, install the [Eclipse YAML Editor plugin YEdit]
 
 [easyrules]:http://www.easyrules.org/index.html
@@ -17,3 +19,5 @@ For Eclipse development of YAML-Ruleproperty-Files, install the [Eclipse YAML Ed
 [blog-post from spring.io/blog]:https://spring.io/blog/2015/01/13/configuring-it-all-out-or-12-factor-app-style-configuration-with-spring
 [Spring Boot docs]:http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
 [Eclipse YAML Editor plugin YEdit]:https://marketplace.eclipse.org/content/yedit
+[foorule]:https://github.com/jonashackt/spring-easyrules/blob/master/src/main/resources/rules.yml
+[docs]:http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-relaxed-binding

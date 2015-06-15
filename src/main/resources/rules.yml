@@ -8,3 +8,4 @@ order:
     
 foorule:
   bar: "BlaTestBla"
+  foo-bar-field-value: "42"
