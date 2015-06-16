@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix="foorule", ignoreUnknownFields=false, locations="rules.yml")
 @Rule(name="FooRule")
-public class FooRule {
+public class FooRule extends AbstractRule {
 
 	private String bar;
 	private String fooBarFieldValue;
+	private String blaBlubbField;
 	
 	@Condition
 	public boolean when() {
@@ -42,4 +43,14 @@ public class FooRule {
 	public void setBar(String bar) {
 		this.bar = bar;
 	}
+
+	public String getBlaBlubbField() {
+		return blaBlubbField;
+	}
+
+	public void setBlaBlubbField(String blaBlubbField) {
+		this.blaBlubbField = blaBlubbField;
+	}
+	
+	
 }

@@ -1,8 +1,5 @@
 package de.jonashackt.springeasyrules;
 
-import static org.easyrules.core.RulesEngineBuilder.aNewRulesEngine;
-
-import org.easyrules.api.RulesEngine;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;
 import de.jonashackt.springeasyrules.rules.AddressRule;
+import de.jonashackt.springeasyrules.rules.BarFooRule;
 import de.jonashackt.springeasyrules.rules.FooRule;
 import de.jonashackt.springeasyrules.rules.OrderRule;
 
@@ -20,51 +18,58 @@ import de.jonashackt.springeasyrules.rules.OrderRule;
 @SpringApplicationConfiguration(classes=SpringEasyRulesApplication.class)
 public class SpringEasyRulesApplicationTests {
 
-	private RulesEngine rulesEngine = aNewRulesEngine().build();  
-	
 	@Autowired
 	private OrderRule orderRule;
-	
 	@Autowired
 	private AddressRule addressRule;
-	
 	@Autowired
 	private FooRule fooRule;
+	@Autowired
+	private BarFooRule barFooRule;
+	
 	
 	@Test
 	public void address() {
 		// Given
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+		
 	    Address address = new Address();
 	    address.setPostcode("994259");
 	    address.setStreet("Haalstreet");
 	    address.setState("GERMANY");
         addressRule.setAddress(address);
+        checker.addRule(addressRule);
         
         // When
-        PlausibilityResult result = PlausibilityChecker.checkRule(addressRule);
+        PlausibilityStatus status = checker.fireRules();
         
         // Then
-        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessage());
-        Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
+        Assert.assertEquals(PlausibilityStatus.ERROR, status);
+        Assert.assertEquals(AddressRule.ERRORTEXT, addressRule.getMessage());
 	}
 	
 	@Test 
 	public void addressPostCodeMandatoryButIsNull() {
 		// Given
-	    Address address = new Address(); // -> postcode == null
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+	    
+		Address address = new Address(); // -> postcode == null
         addressRule.setAddress(address);
+        checker.addRule(addressRule);
         
         // When
-        PlausibilityResult result = PlausibilityChecker.checkRule(addressRule);
+        PlausibilityStatus status = checker.fireRules();
         
         // Then
-        Assert.assertEquals(AddressRule.ERRORTEXT,result.getMessage());
-        Assert.assertEquals(PlausibilityStatus.ERROR, addressRule.getResult().getStatus());
+        Assert.assertEquals(PlausibilityStatus.ERROR, status);
+        Assert.assertEquals(AddressRule.ERRORTEXT, addressRule.getMessage());
 	}
     
 	@Test
     public void order() {    
         // Given
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+		
 		Address address = new Address();
 	    address.setPostcode("99425");
 	    address.setStreet("Haalstreet");
@@ -76,24 +81,35 @@ public class SpringEasyRulesApplicationTests {
 		order.setAmount(140);
  		orderRule.setOrder(order);
  		
+ 		checker.addRule(orderRule);
+ 		
  		// When
- 		PlausibilityResult result = PlausibilityChecker.checkRule(orderRule);
+ 		PlausibilityStatus status = checker.fireRules();
 		
 		// Then
-		Assert.assertEquals(OrderRule.ERRORTEXT, result.getMessage());
-		Assert.assertEquals(PlausibilityStatus.ERROR, result.getStatus());
+ 		Assert.assertEquals(PlausibilityStatus.ERROR, status);
+		Assert.assertEquals(OrderRule.ERRORTEXT, orderRule.getMessage());
 	}
     
     @Test
     public void foo() {
     	// Given
-    	rulesEngine.registerRule(fooRule);
+    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+    	checker.addRule(fooRule);
     	
     	// When
-    	rulesEngine.fireRules();
+    	checker.fireRules();
     	
     	// Then
     	System.out.println("foo bar");
+    }
+    
+    @Test
+    public void bar() {
+    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+    	checker.addRule(barFooRule);
+    	
+    	checker.fireRules();
     }
 	
 	@Test

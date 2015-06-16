@@ -33,8 +33,8 @@ public class AddressRule extends AbstractRule {
 	@Action
     public void then() {
     	System.out.println(ERRORTEXT);
-    	getResult().setStatus(PlausibilityStatus.ERROR);
-    	getResult().setMessage(ERRORTEXT);
+    	setStatus(PlausibilityStatus.ERROR);
+    	setMessage(ERRORTEXT);
     }
 	
     

@@ -9,3 +9,10 @@ order:
 foorule:
   bar: "BlaTestBla"
   foo-bar-field-value: "42"
+  bla-blubbField: "Great"
+  
+barfoorule:
+  rule:
+    them:
+      all:
+        bar: "Yeah"

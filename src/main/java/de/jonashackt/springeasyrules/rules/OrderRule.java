@@ -34,8 +34,8 @@ public class OrderRule extends AbstractRule {
 	@Action
 	public void then() {
 		System.out.println(ERRORTEXT);
-		getResult().setStatus(PlausibilityStatus.ERROR);
-		getResult().setMessage(ERRORTEXT);
+		setStatus(PlausibilityStatus.ERROR);
+		setMessage(ERRORTEXT);
 	}
 	
 	public void setAddress(Address address) {
