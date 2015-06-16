@@ -6,6 +6,11 @@ import org.easyrules.annotation.Rule;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
+
+
+
 import de.jonashackt.springeasyrules.AbstractRule;
 
 @Component
@@ -13,8 +18,11 @@ import de.jonashackt.springeasyrules.AbstractRule;
 @Rule(name="FooRule")
 public class FooRule extends AbstractRule {
 
+	@NotNull // checking, if the values are set in our rules.yml
 	private String bar;
+	@NotNull
 	private String fooBarFieldValue;
+	@NotNull
 	private String blaBlubbField;
 	
 	@Condition

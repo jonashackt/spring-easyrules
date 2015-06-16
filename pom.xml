@@ -41,6 +41,26 @@
 			<version>${easyrules.version}</version>
 		</dependency>
 		
+		<!-- BeanValidation JSR303 for Validation Rule-Fields set -->
+		<!-- see http://hibernate.org/validator/documentation/getting-started/ -->
+		<!-- Not needed any more, if you are using spring-boot-starter-web (both validator and el-stuff is already there) -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+		   <groupId>javax.el</groupId>
+		   <artifactId>javax.el-api</artifactId>
+		   <version>2.2.4</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.glassfish.web</groupId>
+		   <artifactId>javax.el</artifactId>
+		   <version>2.2.4</version>
+		</dependency>
+
+		
+		
 		<!-- Tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
