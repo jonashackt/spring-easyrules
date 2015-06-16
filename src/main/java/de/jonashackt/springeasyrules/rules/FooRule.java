@@ -6,6 +6,8 @@ import org.easyrules.annotation.Rule;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import de.jonashackt.springeasyrules.AbstractRule;
+
 @Component
 @ConfigurationProperties(prefix="foorule", ignoreUnknownFields=false, locations="rules.yml")
 @Rule(name="FooRule")

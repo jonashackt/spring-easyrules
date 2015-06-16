@@ -6,6 +6,7 @@ import org.easyrules.annotation.Rule;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import de.jonashackt.springeasyrules.AbstractRule;
 import de.jonashackt.springeasyrules.PlausibilityStatus;
 import de.jonashackt.springeasyrules.internalmodel.Address;
 import de.jonashackt.springeasyrules.internalmodel.Order;

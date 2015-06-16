@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.easyrules.api.RulesEngine;
 
-import de.jonashackt.springeasyrules.rules.AbstractRule;
-
 /**
  * Wrapper for EasyRules RulesEngine - registers and fires Rules
  */
@@ -49,7 +47,11 @@ private List<AbstractRule> rules = new ArrayList<AbstractRule>();
 		
 	}
 	
+	/**
+	 * Resets Rule to defaults and adds it to rules, that can be fired with {@link #fireRules() fireRules()}
+	 */
 	public void addRule(AbstractRule rule) {
+		rule.reset2Default();
 		rules.add(rule);
 	}
 	

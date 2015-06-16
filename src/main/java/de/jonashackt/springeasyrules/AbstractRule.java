@@ -1,6 +1,5 @@
-package de.jonashackt.springeasyrules.rules;
+package de.jonashackt.springeasyrules;
 
-import de.jonashackt.springeasyrules.PlausibilityStatus;
 
 public class AbstractRule {
 
@@ -18,5 +17,8 @@ public class AbstractRule {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public void reset2Default() {
+		status = PlausibilityStatus.SUCCESS;
 	}
 }
