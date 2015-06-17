@@ -1,5 +1,7 @@
 package de.jonashackt.springeasyrules.rules;
 
+import javax.validation.constraints.NotNull;
+
 import org.easyrules.annotation.Action;
 import org.easyrules.annotation.Condition;
 import org.easyrules.annotation.Rule;
@@ -21,7 +23,9 @@ public class AddressRule extends AbstractRule {
 
 	public static final String ERRORTEXT = "The Address´ postcode isn´t valid!";
 	private Address address;
+	@NotNull
 	private String postcodeReqex = "([0-9]{5})";
+	@NotNull
 	private boolean postcodeMandatory;	
 
 	@Condition
@@ -50,4 +54,13 @@ public class AddressRule extends AbstractRule {
 	public void setPostcodeMandatory(boolean postcodeMandatory) {
 		this.postcodeMandatory = postcodeMandatory;
 	}
+
+	@Override
+	public String toString() {
+		return "AddressRule [address=" + address + ", postcodeReqex="
+				+ postcodeReqex + ", postcodeMandatory=" + postcodeMandatory
+				+ "]";
+	}
+	
+	
 }

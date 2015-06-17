@@ -31,7 +31,7 @@ public class SpringEasyRulesApplicationTests {
 	@Test
 	public void address() {
 		// Given
-		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausibilityChecker();
 		
 	    Address address = new Address();
 	    address.setPostcode("994259");
@@ -51,7 +51,7 @@ public class SpringEasyRulesApplicationTests {
 	@Test 
 	public void addressPostCodeMandatoryButIsNull() {
 		// Given
-		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausibilityChecker();
 	    
 		Address address = new Address(); // -> postcode == null
         addressRule.setAddress(address);
@@ -68,7 +68,7 @@ public class SpringEasyRulesApplicationTests {
 	@Test
     public void order() {    
         // Given
-		PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+		PlausibilityChecker checker = PlausibilityChecker.aNewPlausibilityChecker();
 		
 		Address address = new Address();
 	    address.setPostcode("99425");
@@ -94,7 +94,7 @@ public class SpringEasyRulesApplicationTests {
     @Test
     public void foo() {
     	// Given
-    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausibilityChecker();    	
     	checker.addRule(fooRule);
     	
     	// When
@@ -106,16 +106,16 @@ public class SpringEasyRulesApplicationTests {
     
     @Test
     public void bar() {
-    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausiPruefer();
+    	PlausibilityChecker checker = PlausibilityChecker.aNewPlausibilityChecker();
     	checker.addRule(barFooRule);
     	
     	checker.fireRules();
     }
 	
-	@Test
-	public void testIfPropertyRulesAreLoadedCorrectlyFromYml() {
-		Assert.assertEquals("Properties from rules.yml not correctly loaded. Check http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-typesafe-configuration-properties for details ",
-				"BlaTestBla", fooRule.getBar());
-	}
+//	@Test
+//	public void testIfPropertyRulesAreLoadedCorrectlyFromYml() {
+//		Assert.assertEquals("Properties from rules.yml not correctly loaded. Check http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-typesafe-configuration-properties for details ",
+//				"BlaTestBla", fooRule.getBar());
+//	}
 
 }

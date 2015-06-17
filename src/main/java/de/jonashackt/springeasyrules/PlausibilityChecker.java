@@ -17,7 +17,7 @@ private List<AbstractRule> rules = new ArrayList<AbstractRule>();
 	private List<String> messages = new ArrayList<String>();
 	private PlausibilityStatus status = PlausibilityStatus.SUCCESS;  // default
 	
-	public static PlausibilityChecker aNewPlausiPruefer() {
+	public static PlausibilityChecker aNewPlausibilityChecker() {
 		return new PlausibilityChecker();
 	}
 	
