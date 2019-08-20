@@ -23,8 +23,8 @@
 		<start-class>de.jonashackt.springdrools.SpringdroolsApplication</start-class>
 		<easyrules.version>2.0.0</easyrules.version>
 
-		<build-plugin.jacoco.version>0.7.5.201505241946</build-plugin.jacoco.version>
-        <build-plugin.coveralls.version>3.1.0</build-plugin.coveralls.version>
+		<build-plugin.jacoco.version>0.8.4</build-plugin.jacoco.version>
+        	<build-plugin.coveralls.version>4.3.0</build-plugin.coveralls.version>
 	</properties>
 
 	<dependencies>
